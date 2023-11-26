@@ -12,11 +12,11 @@ export default async function Page() {
         <div className="flex gap-2">
           <a
             className="ring-offset-background focus-visible:ring-ring inline-flex h-10 w-fit items-center justify-center rounded-md bg-[#7289DA] px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-            href="https://discord.gg/NmXuqGgkb3"
+            href="https://discord.com/api/oauth2/authorize?client_id=1178346398253584394&permissions=2147485696&scope=bot%20applications.commands"
             target="_blank"
             rel="noreferrer"
           >
-            Try it out
+            Add this BOT to your server
           </a>
           <a
             className="ring-offset-background focus-visible:ring-ring inline-flex h-10 w-fit items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
@@ -24,7 +24,7 @@ export default async function Page() {
             target="_blank"
             rel="noreferrer"
           >
-            Github
+            Special Thanks
           </a>
         </div>
       </section>
