@@ -51,10 +51,18 @@ export async function POST(request: Request) {
 
     switch (name) {
       case commands.ping.name:
-        return NextResponse.json({
-          type: InteractionResponseType.ChannelMessageWithSource,
-          data: { content: `Pong` },
-        })
+        const startTime = Date.now();
+
+        setTimeout(() => {
+            const endTime = Date.now();
+            const latency = endTime - startTime;
+            const currentTimeUTC = new Date().toUTCString();
+
+            return NextResponse.json({
+                type: InteractionResponseType.ChannelMessageWithSource,
+                data: { content: `Pong!!\n-------------------------------\nLatency: ${latency}ms\nTime: ${currentTimeUTC}` },
+            });
+        }, 2000);
 
       case commands.invite.name:
         return NextResponse.json({
