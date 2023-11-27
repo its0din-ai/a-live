@@ -63,6 +63,7 @@ export async function POST(request: Request) {
                 data: { content: `Pong!!\n-------------------------------\nLatency: ${latency}ms\nTime: ${currentTimeUTC}` },
             });
         }, 2000);
+        break;
 
       case commands.invite.name:
         return NextResponse.json({
