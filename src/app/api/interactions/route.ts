@@ -9,6 +9,7 @@ import {
 } from "discord-api-types/v10"
 import { NextResponse } from "next/server"
 import { getRandomPic } from "./random-pic"
+import axios from "axios"
 
 /**
  * Use edge runtime which is faster, cheaper, and has no cold-boot.
@@ -51,19 +52,24 @@ export async function POST(request: Request) {
 
     switch (name) {
       case commands.ping.name:
-        const startTime = Date.now();
+        const startTime = Date.now()
 
-        setTimeout(() => {
-            const endTime = Date.now();
-            const latency = endTime - startTime;
-            const currentTimeUTC = new Date().toUTCString();
+        try {
+          const response = await axios.get("https://a-live-chi.vercel.app/")
+          const endTime = Date.now()
+          const latency = endTime - startTime
+          const currentTimeUTC = new Date().toUTCString()
 
-            return NextResponse.json({
-                type: InteractionResponseType.ChannelMessageWithSource,
-                data: { content: `Pong!!\n-------------------------------\nLatency: ${latency}ms\nTime: ${currentTimeUTC}` },
-            });
-        }, 2000);
-        break;
+          NextResponse.json({
+            type: InteractionResponseType.ChannelMessageWithSource,
+            data: {
+              content: `Pong!!\n-------------------------------\nLatency: ${latency}ms\nTime: ${currentTimeUTC}`,
+            },
+          })
+        } catch (error) {
+          console.error("Error contacting edge server:", error)
+          return new NextResponse("Something went wrong :(", { status: 500 })
+        }
 
       case commands.invite.name:
         return NextResponse.json({
