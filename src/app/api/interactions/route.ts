@@ -52,24 +52,13 @@ export async function POST(request: Request) {
 
     switch (name) {
       case commands.ping.name:
-        const startTime = Date.now()
-
-        try {
-          const response = await axios.get("https://a-live-chi.vercel.app/")
-          const endTime = Date.now()
-          const latency = endTime - startTime
-          const currentTimeUTC = new Date().toUTCString()
-
-          NextResponse.json({
-            type: InteractionResponseType.ChannelMessageWithSource,
-            data: {
-              content: `Pong!!\n-------------------------------\nLatency: ${latency}ms\nTime: ${currentTimeUTC}`,
-            },
-          })
-        } catch (error) {
-          console.error("Error contacting edge server:", error)
-          return new NextResponse("Something went wrong :(", { status: 500 })
-        }
+        const currentTimeUTC = new Date().toUTCString()
+        return NextResponse.json({
+          type: InteractionResponseType.ChannelMessageWithSource,
+          data: {
+            content: `Pong!!\n-------------------------------\nTime: ${currentTimeUTC}`,
+          },
+        })
 
       case commands.invite.name:
         return NextResponse.json({
